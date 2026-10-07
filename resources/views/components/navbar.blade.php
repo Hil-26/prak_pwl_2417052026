@@ -20,12 +20,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.index') }}">
+                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah') || request()->is('mata-kuliah') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.index') }}">
                         <i class="bi bi-journal-code me-1"></i> [ ./list_mk ]
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah/create') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.create') }}">
+                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah/create') || request()->is('mata-kuliah/create') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.create') }}">
                         <i class="bi bi-journal-plus me-1"></i> [ ./create_mk ]
                     </a>
                 </li>

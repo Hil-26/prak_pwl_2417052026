@@ -53,4 +53,57 @@ class MataKuliahTest extends TestCase
         $this->assertNotNull($created);
         $this->assertEquals(36, strlen($created->id));
     }
+
+    public function test_matakuliah_edit_page_can_be_rendered(): void
+    {
+        $mk = MataKuliah::create([
+            'nama_mk' => 'Sistem Operasi',
+            'sks' => 3,
+        ]);
+
+        $response = $this->get('/mata-kuliah/' . $mk->id . '/edit');
+        $response->assertStatus(200);
+        $response->assertSee('Edit Mata Kuliah');
+        $response->assertSee('Sistem Operasi');
+        $response->assertSee('3');
+    }
+
+    public function test_matakuliah_can_be_updated(): void
+    {
+        $mk = MataKuliah::create([
+            'nama_mk' => 'Jaringan Komputer',
+            'sks' => 3,
+        ]);
+
+        $response = $this->put('/mata-kuliah/' . $mk->id, [
+            'nama_mk' => 'Jaringan Komputer Lanjut',
+            'sks' => 4,
+        ]);
+
+        $response->assertRedirect('/mata-kuliah');
+        $response->assertSessionHas('success', 'Data berhasil diperbarui!');
+
+        $this->assertDatabaseHas('mata_kuliah', [
+            'id' => $mk->id,
+            'nama_mk' => 'Jaringan Komputer Lanjut',
+            'sks' => 4,
+        ]);
+    }
+
+    public function test_matakuliah_can_be_deleted(): void
+    {
+        $mk = MataKuliah::create([
+            'nama_mk' => 'Basis Data',
+            'sks' => 3,
+        ]);
+
+        $response = $this->delete('/mata-kuliah/' . $mk->id);
+
+        $response->assertRedirect('/mata-kuliah');
+        $response->assertSessionHas('success', 'Data berhasil dihapus!');
+
+        $this->assertDatabaseMissing('mata_kuliah', [
+            'id' => $mk->id,
+        ]);
+    }
 }
