@@ -19,6 +19,16 @@
                         <i class="bi bi-node-plus-fill me-1"></i> [ ./create_user ]
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.index') }}">
+                        <i class="bi bi-journal-code me-1"></i> [ ./list_mk ]
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 rounded {{ request()->is('matakuliah/create') ? 'terminal-green fw-bold bg-dark' : 'text-secondary' }}" href="{{ route('matakuliah.create') }}">
+                        <i class="bi bi-journal-plus me-1"></i> [ ./create_mk ]
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
