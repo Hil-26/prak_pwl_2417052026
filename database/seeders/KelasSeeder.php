@@ -18,7 +18,7 @@ class KelasSeeder extends Seeder
         ];
 
         foreach ($data as $kelas) {
-            Kelas::create([
+            Kelas::firstOrCreate([
                 'nama_kelas' => $kelas
             ]);
         }
